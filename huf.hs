@@ -62,14 +62,13 @@ lookupCode :: Char -> [(Char, String)] -> String
 lookupCode c ((ch,code):xs)
     | c == ch   = code
     | otherwise = lookupCode c xs
-lookupCode _ [] = ""  -- caso não encontre (não deveria acontecer)
+lookupCode _ [] = ""  -- caso não encontre (não deve acontecer)
 
 -- Codifica o texto
 encode :: [(Char, String)] -> String -> String
 encode _ [] = []
 encode table (x:xs) = lookupCode x table ++ encode table xs
 
--- Programa principal
 main :: IO ()
 main = do
     input <- readFile "in.txt"
